@@ -15,22 +15,22 @@
     </div>
   </header>
 
-  <nav>
-    <ul>
-      <li><a href="#produk-terbaru">Beranda</a></li>
-      <li><a href="#produk-terbaru">Produk</a></li>
-      <li><a href="#keranjang">Keranjang</a></li>
-      <li>
-        <a href="#kategori">Kategori</a>
-        <ul class="submenu">
-          <li><a href="#">Pashmina</a></li>
-          <li><a href="#">Paris Premium</a></li>
-          <li><a href="#">Bergo Series</a></li>
-        </ul>
-      </li>
-      <li><a href="#Kontak-kami">Kontak</a></li>
-    </ul>
-  </nav>
+ <nav>
+  <ul>
+    <li><a href="#produk-terbaru">Beranda</a></li>
+    <li><a href="#produk-terbaru">Produk</a></li>
+    <li><a href="#keranjang">Keranjang</a></li>
+    <li>
+      <a href="#kategori">Kategori ▼</a>
+      <ul class="submenu">
+        <li><a href="#">Pashmina</a></li>
+        <li><a href="#">Paris Premium</a></li>
+        <li><a href="#">Bergo Series</a></li>
+      </ul>
+    </li>
+    <li><a href="#Kontak-kami">Kontak</a></li>
+  </ul>
+</nav>
 
   <main>
     <section id="produk-terbaru">
@@ -110,7 +110,7 @@
       keranjang.push(produk);
       localStorage.setItem('keranjang', JSON.stringify(keranjang));
 
-      // Update jumlah dibeli
+     
       const produkArtikel = document.querySelectorAll('.produk-grid article');
       produkArtikel.forEach((artikel) => {
         const namaProduk = artikel.querySelector('h3').textContent;
@@ -148,7 +148,7 @@
       section.style.display = 'block';
 
       if (keranjang.length === 0) {
-        container.innerHTML = '<p class="kosong">Keranjang kamu masih kosong nih 😢 ayo tambahkan sekarang! </p>';
+        container.innerHTML = '<p class="kosong">Keranjang kamu masih kosong nih 😢 ayo segera tambahkan! </p>';
         return;
       }
 
@@ -180,7 +180,7 @@
       tampilkanKeranjang();
       updateJumlahProduk();
 
-      // Reset jumlah dibeli di semua produk
+      
       const jumlahDibeliEl = document.querySelectorAll('.jumlah-dibeli');
       jumlahDibeliEl.forEach(el => el.textContent = 'Jumlah dibeli: 0');
     }
@@ -189,7 +189,7 @@
       updateJumlahProduk();
       tampilkanKeranjang();
     };
-  </script>
+  </script>Add commentMore actions
 
 </body>
 </html>
