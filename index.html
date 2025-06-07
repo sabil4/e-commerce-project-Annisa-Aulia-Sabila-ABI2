@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SABILA HIJAB</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+      <img src="logo-sabilahijab.png" alt="logo-sabilahijab" class="logo" />
+      <h1>SABILA HIJAB</h1>
+    </div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#produk-terbaru">Beranda</a></li>
+      <li><a href="#produk-terbaru">Produk</a></li>
+      <li><a href="#keranjang">Keranjang</a></li>
+      <li>
+        <a href="#kategori">Kategori</a>
+        <ul class="submenu">
+          <li><a href="#">Pashmina</a></li>
+          <li><a href="#">Paris Premium</a></li>
+          <li><a href="#">Bergo Series</a></li>
+        </ul>
+      </li>
+      <li><a href="#Kontak-kami">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="produk-terbaru">
+      <h2>Produk Terbaru</h2>
+      <div class="produk-grid">
+        <article>
+          <img src="pashmina-silk.jpeg" alt="Pashmina-Silk" />
+          <h3>Pashmina Silk</h3>
+          <p>Hijab pashmina silk dengan bahan silk sutra premium, nyaman dipakai.</p>
+          <p class="harga">Rp85.000</p>
+          <p class="jumlah-dibeli">Jumlah dibeli: 0</p>
+          <button class="beli-btn" onclick="tambahKeKeranjang('Pashmina Silk', 85000)">Beli Sekarang</button>
+        </article>
+
+        <article>
+          <img src="pashmina-rayon.jpeg" alt="Pashmina-Rayon" />
+          <h3>Pashmina Rayon</h3>
+          <p>Pashmina dengan bahan Rayon Premium dan 7 warna pastel yang cantik.</p>
+          <p class="harga">Rp65.000</p>
+          <p class="jumlah-dibeli">Jumlah dibeli: 0</p>
+          <button class="beli-btn" onclick="tambahKeKeranjang('Pashmina Rayon', 65000)">Beli Sekarang</button>
+        </article>
+
+        <article>
+          <img src="pashmina-viscose.jpeg" alt="Pashmina-Viscose" />
+          <h3>Pashmina Viscose</h3>
+          <p>Pashmina Viscose dengan bahan serat viscose yang mudah dibentuk dan tidak licin.</p>
+          <p class="harga">Rp75.000</p>
+          <p class="jumlah-dibeli">Jumlah dibeli: 0</p>
+          <button class="beli-btn" onclick="tambahKeKeranjang('Pashmina Viscose', 75000)">Beli Sekarang</button>
+        </article>
+
+        <article>
+          <img src="paris-premium.jpeg" alt="paris-premium" />
+          <h3>Paris Premium</h3>
+          <p>Hijab Segiempat Paris Premium 110cm x 110cm dengan bahan Voal Premium Lembut</p>
+          <p class="harga">Rp58.000</p>
+          <p class="jumlah-dibeli">Jumlah dibeli: 0</p>
+          <button class="beli-btn" onclick="tambahKeKeranjang('Paris Premium', 58000)">Beli Sekarang</button>
+        </article>
+
+        <article>
+          <img src="bergo-series.jpeg" alt="Bergo-Series" />
+          <h3>Bergo Series</h3>
+          <p>Hijab Instan atau Bergo Series terbuat dari bahan Spandex yang mudah menyerap keringat dan cocok untuk berolahraga.</p>
+          <p class="harga">Rp45.000</p>
+          <p class="jumlah-dibeli">Jumlah dibeli: 0</p>
+          <button class="beli-btn" onclick="tambahKeKeranjang('Bergo Series', 45000)">Beli Sekarang</button>
+        </article>
+      </div>
+    </section>
+
+    <div id="keranjang" class="keranjang-section">
+      <h2>Isi Keranjang:</h2>
+      <div id="keranjangContainer"></div>
+      <div style="text-align:center;">
+        <button onclick="kosongkanKeranjang()">Kosongkan Keranjang</button>
+      </div>
+    </div>
+  </main>
+
+  <section id="Kontak-kami">
+    <h2>Kontak Kami</h2>
+    <p>📍Jl. Dr. Djundjunan No.879D, Pajajaran, Kec. Cicendo, Kota Bandung, Jawa Barat 40173.</p>
+    <p>📞 0881-0234-90045</p>
+    <p>📧 CS@sabilahijab.id</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 SABILA HIJAB</p>
+  </footer>
+
+  <script>
+    function tambahKeKeranjang(nama, harga) {
+      const produk = { nama, harga };
+      let keranjang = JSON.parse(localStorage.getItem('keranjang')) || [];
+      keranjang.push(produk);
+      localStorage.setItem('keranjang', JSON.stringify(keranjang));
+
+      // Update jumlah dibeli
+      const produkArtikel = document.querySelectorAll('.produk-grid article');
+      produkArtikel.forEach((artikel) => {
+        const namaProduk = artikel.querySelector('h3').textContent;
+        if (namaProduk === nama) {
+          const jumlahEl = artikel.querySelector('.jumlah-dibeli');
+          const jumlah = parseInt(jumlahEl.textContent.replace(/\D/g, '')) + 1;
+          jumlahEl.textContent = `Jumlah dibeli: ${jumlah}`;
+        }
+      });
+
+      updateJumlahProduk();
+      tampilkanKeranjang();
+      alert(`Produk "${nama}" ditambahkan ke keranjang!`);
+    }
+
+    function updateJumlahProduk() {
+      const keranjang = JSON.parse(localStorage.getItem('keranjang')) || [];
+      const totalItem = keranjang.length;
+
+      let totalItemElement = document.getElementById('totalItemKeranjang');
+      if (!totalItemElement) {
+        totalItemElement = document.createElement('span');
+        totalItemElement.id = 'totalItemKeranjang';
+        totalItemElement.style.marginLeft = '10px';
+        totalItemElement.style.fontWeight = 'bold';
+        document.querySelector('nav').appendChild(totalItemElement);
+      }
+      totalItemElement.textContent = `🛒 ${totalItem} item`;
+    }
+
+    function tampilkanKeranjang() {
+      const keranjang = JSON.parse(localStorage.getItem('keranjang')) || [];
+      const container = document.getElementById('keranjangContainer');
+      const section = document.getElementById('keranjang');
+      section.style.display = 'block';
+
+      if (keranjang.length === 0) {
+        container.innerHTML = '<p class="kosong">Keranjang kamu masih kosong nih 😢 ayo tambahkan sekarang! </p>';
+        return;
+      }
+
+      let total = 0;
+      let html = '<table><thead><tr><th>Produk</th><th>Harga</th></tr></thead><tbody>';
+      keranjang.forEach(item => {
+        html += `<tr><td>${item.nama}</td><td>Rp${item.harga.toLocaleString()}</td></tr>`;
+        total += item.harga;
+      });
+      html += `
+        </tbody>
+        <tfoot>
+          <tr style="font-weight:bold; background:#ffe6e6;">
+            <td>Total Item</td>
+            <td>${keranjang.length} produk</td>
+          </tr>
+          <tr style="font-weight:bold; background:#ffe6e6;">
+            <td>Total Harga</td>
+            <td>Rp${total.toLocaleString()}</td>
+          </tr>
+        </tfoot>
+      </table>`;
+      container.innerHTML = html;
+    }
+
+    function kosongkanKeranjang() {
+      localStorage.removeItem('keranjang');
+      alert("Keranjang dikosongkan.");
+      tampilkanKeranjang();
+      updateJumlahProduk();
+
+      // Reset jumlah dibeli di semua produk
+      const jumlahDibeliEl = document.querySelectorAll('.jumlah-dibeli');
+      jumlahDibeliEl.forEach(el => el.textContent = 'Jumlah dibeli: 0');
+    }
+
+    window.onload = () => {
+      updateJumlahProduk();
+      tampilkanKeranjang();
+    };
+  </script>
+
+</body>
+</html>

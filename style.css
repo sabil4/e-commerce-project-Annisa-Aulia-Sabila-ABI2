@@ -1,0 +1,186 @@
+:root {
+  font-size: 16px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #ffdde1, #add8e6); 
+}
+
+header {
+  background: linear-gradient(90deg, #ffb6c1, #add8e6);
+  color: white;
+  padding: 1rem;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.logo {
+  width: 150px;
+  height: auto;
+}
+
+.logo-container h1 {
+  color: white;
+  margin: 0;
+  font-size: 2rem;
+}
+
+nav {
+  background-color: #ffb6c1;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+}
+
+nav ul li {
+  position: relative;
+}
+
+nav ul li a {
+  display: block;
+  padding: 1rem;
+  color: white;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  background-color: #add8e6;
+  color: #fff
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #ffb6c1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  z-index: 1000;
+}
+
+.submenu li a {
+  padding: 0.5rem 1rem;
+  display: block;
+  color: white; 
+}
+
+nav ul li:hover .submenu {
+  display: block;
+}
+
+main {
+  padding: 1rem;
+}
+
+section {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.produk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+article {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+article img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.beli-btn {
+  background-color: #ffb6c1;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.beli-btn:hover {
+  background-color: #f082a7;
+}
+
+footer {
+  background-color: #add8e6;
+  color: #333;
+  text-align: center;
+  padding: 1rem;
+}
+
+.keranjang-section {
+  background: #fff4f4;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 40px;
+  display: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#produk-terbaru h2,
+#best-seller h2 {
+  color: #555; 
+}
+
+.produk-grid article h3,
+.produk-grid article p {
+  color: #7a3660; 
+}
+.produk-grid article p.harga {
+  color: #7a211d; 
+  font-weight: bold;
+}
+
+
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+  }
+
+  .logo-container h1 {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
