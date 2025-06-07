@@ -39,18 +39,18 @@ header {
 
 nav {
   background-color: #ffb6c1;
-  overflow-x: auto; /* biar scrollable kalo item banyak */
+  overflow-x: auto; 
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  flex-wrap: nowrap; /* biar horizontal terus */
+  flex-wrap: nowrap; 
   margin: 0;
   padding: 0;
   justify-content: center;
   gap: 1rem;
-  overflow-x: auto; /* scrollable di HP */
+  overflow-x: auto; 
 }
 
 nav ul li {
@@ -63,7 +63,7 @@ nav ul li a {
   padding: 1rem;
   color: white;
   text-decoration: none;
-  white-space: nowrap; /* biar ga wrap ke bawah */
+  white-space: nowrap; 
 }
 
 nav ul li a:hover {
@@ -178,9 +178,93 @@ table {
   font-weight: bold;
 }
 
-/* Hapus flex-direction: column di media query ini! */
+@media (max-width: 320px) {
+  :root {
+    font-size: 14px; 
+  }
+
+  header {
+    padding: 0.5rem;
+  }
+
+  .logo-container {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .logo {
+    width: 120px; 
+  }
+
+  .logo-container h1 {
+    font-size: 1.2rem;
+  }
+
+  nav ul {
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+  }
+
+  nav ul li a {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .submenu li a {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  main {
+    padding: 0.5rem;
+  }
+
+  section {
+    margin-bottom: 1.5rem;
+  }
+
+  .produk-grid {
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+  }
+
+  .produk-grid article {
+    width: 180px; 
+    padding: 0.75rem;
+  }
+
+  .produk-grid article h3,
+  .produk-grid article p {
+    font-size: 0.9rem;
+  }
+
+  .produk-grid article p.harga {
+    font-size: 1rem;
+  }
+
+  .beli-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .keranjang-section {
+    padding: 15px;
+    margin-top: 20px;
+  }
+
+  table {
+    font-size: 0.8rem;
+  }
+
+  footer {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+}
+
 @media (max-width: 768px) {
-  /* Tidak ada flex-direction: column lagi */
+
   .logo-container h1 {
     font-size: 1rem;
   }
@@ -193,7 +277,7 @@ table {
   }
 }
 
-/* Tambahan opsional: scrollbar styling */
+
 nav ul::-webkit-scrollbar,
 .produk-grid::-webkit-scrollbar {
   height: 8px;
